@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+    <PackageReference Include="tdb.appsettings" Version="2.1.0.1" />
+    <PackageReference Include="tdb.consul.kv" Version="2.1.0.1" />
+    <PackageReference Include="tdb.csredis" Version="2.1.0.1" />
+    <PackageReference Include="tdb.nlog.mysql" Version="2.1.0.2" />
+  </ItemGroup>
+
+</Project>
