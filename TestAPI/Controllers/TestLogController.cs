@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using tdb.framework.webapi.DTO;
 using tdb.framework.webapi.Log;
 
 namespace TestAPI.Controllers
@@ -22,12 +23,12 @@ namespace TestAPI.Controllers
         /// <returns></returns>
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult WriteFileLog()
+        public BaseItemRes<bool> WriteFileLog()
         {
             Logger.Ins.Info("info日志");
             Logger.Ins.Error(new Exception("异常"), "error日志");
 
-            return Ok();
+            return BaseItemRes<bool>.Ok(true);
         }
 
         #endregion

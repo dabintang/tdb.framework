@@ -9,7 +9,7 @@ namespace tdb.framework.webapi.Config
     /// <summary>
     /// appsettings.json配置
     /// </summary>
-    public class TdbJsonConfig : IJsonConfig
+    public class TdbJsonConfig : ILocalConfig
     {
         #region 实现接口
 

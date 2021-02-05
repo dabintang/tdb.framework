@@ -13,7 +13,7 @@ namespace tdb.framework.webapi.Config
     /// <summary>
     /// 放在consul的kv上的配置
     /// </summary>
-    public class TdbConsulConfig : IConsulConfig
+    public class TdbConsulConfig : IDistributedConfig
     {
         /// <summary>
         /// consul服务IP
@@ -65,10 +65,10 @@ namespace tdb.framework.webapi.Config
         {
             if (string.IsNullOrWhiteSpace(fullFileName))
             {
-                fullFileName = CommHelper.GetFullFileName($"backup_{DateTime.Now.ToString("yyyyMMddHHmmssfff")}_consulConfig.json");
+                fullFileName = CommHelper.GetFullFileName($"backup{Path.DirectorySeparatorChar}consulConfig_{DateTime.Now.ToString("yyyyMMddHHmmssfff")}.json");
             }
 
-            var path = Path.GetFullPath(fullFileName);
+            var path = Path.GetDirectoryName(fullFileName);
             //如果路径不存在，创建路径
             if (Directory.Exists(path) == false)
             {
@@ -82,7 +82,7 @@ namespace tdb.framework.webapi.Config
             var jsonTxt = JsonConvert.SerializeObject(config);
 
             //写文件
-            File.WriteAllText(fullFileName, jsonTxt, Encoding.Unicode);
+            File.WriteAllText(fullFileName, jsonTxt, Encoding.Default);
 
             return fullFileName;
         }
@@ -91,28 +91,12 @@ namespace tdb.framework.webapi.Config
         /// 还原配置
         /// </summary>
         /// <typeparam name="T">consul配置信息类型</typeparam>
-        /// <param name="config">consul配置信息</param>
-        /// <param name="fullFileName">完还原份文件名(.json文件)</param>
-        /// <param name="msg">还原结果</param>
+        /// <param name="config">配置信息</param>
         /// <returns>还原结果</returns>
-        public bool RestoreConfig<T>(string fullFileName, out string msg) where T : class, new()
+        public bool RestoreConfig<T>(T config) where T : class, new()
         {
-            if (File.Exists(fullFileName) == false)
-            {
-                msg = "文件不存在";
-                return false;
-            }
-
-            //读取文件
-            var jsonTxt = File.ReadAllText(fullFileName);
-
-            //转成配置对象
-            T config = JsonConvert.DeserializeObject<T>(jsonTxt);
-
             //还原
             ConsulConfigHelper.PutConfig<T>(this._ConsulIP, this._ConsulPort, config, this._PrefixKey);
-
-            msg = "还原成功";
             return true;
         }
 

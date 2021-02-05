@@ -34,19 +34,19 @@ namespace tdb.framework.webapi.Log
         /// <summary>
         /// 初始化日志
         /// </summary>
-        internal static void InitLog()
+        internal static void InitNLog()
         {
-            _log = new TdbLog();
+            _log = new TdbNLog();
         }
 
         /// <summary>
         /// 初始化日志（Mysql）
         /// </summary>
         /// <param name="connectionString">MySQL数据库连接字符串</param>
-        /// <param name="servicesCode">服务编码</param>
-        internal static void InitMySqlLog(string connectionString, string servicesCode = "TDB")
+        /// <param name="serviceCode">服务编码</param>
+        internal static void InitMySqlNLog(string connectionString, string serviceCode = "TDB")
         {
-            _log = new TdbLog(connectionString, servicesCode);
+            _log = new TdbNLog(connectionString, serviceCode);
         }
 
         /// <summary>

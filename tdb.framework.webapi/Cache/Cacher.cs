@@ -24,7 +24,7 @@ namespace tdb.framework.webapi.Cache
             {
                 if (_cache == null)
                 {
-                    throw new Exception("请先在[Startup.cs]的[ConfigureServices]方法内调用方法[services.AddCache]");
+                    throw new Exception("请先在[Startup.cs]的[ConfigureServices]方法内调用方法[services.AddTdbCache]");
                 }
 
                 return _cache;
@@ -35,9 +35,9 @@ namespace tdb.framework.webapi.Cache
         /// 初始化
         /// </summary>
         /// <param name="connectionStrings">连接字符串集合</param>
-        internal static void InitCache(string[] connectionStrings)
+        internal static void InitRedisCache(string[] connectionStrings)
         {
-            _cache = new TdbCache(connectionStrings);
+            _cache = new TdbRedisCache(connectionStrings);
         }
 
         /// <summary>

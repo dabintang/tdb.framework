@@ -15,9 +15,9 @@ namespace tdb.framework.webapi.Log
         /// 添加日志服务（文本）
         /// </summary>
         /// <param name="services"></param>
-        public static void AddTdbLogger(this IServiceCollection services)
+        public static void AddTdbNLogger(this IServiceCollection services)
         {
-            Logger.InitLog();
+            Logger.InitNLog();
         }
 
         /// <summary>
@@ -25,10 +25,10 @@ namespace tdb.framework.webapi.Log
         /// </summary>
         /// <param name="services"></param>
         /// <param name="connectionString">MySQL数据库连接字符串</param>
-        /// <param name="servicesCode">服务编码</param>
-        public static void AddTdbMySqlLogger(this IServiceCollection services, string connectionString, string servicesCode = "TDB")
+        /// <param name="serviceCode">服务编码</param>
+        public static void AddTdbMySqlNLogger(this IServiceCollection services, string connectionString, string serviceCode = "TDB")
         {
-            Logger.InitMySqlLog(connectionString, servicesCode);
+            Logger.InitMySqlNLog(connectionString, serviceCode);
         }
 
         /// <summary>

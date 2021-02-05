@@ -16,9 +16,9 @@ namespace tdb.framework.webapi.Cache
         /// </summary>
         /// <param name="services"></param>
         /// <param name="connectionStrings">连接字符串集合</param>
-        public static void AddTdbCache(this IServiceCollection services, string[] connectionStrings)
+        public static void AddTdbRedisCache(this IServiceCollection services, string[] connectionStrings)
         {
-            Cacher.InitCache(connectionStrings);
+            Cacher.InitRedisCache(connectionStrings);
         }
 
         /// <summary>

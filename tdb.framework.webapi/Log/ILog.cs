@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NLog;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,6 +11,21 @@ namespace tdb.framework.webapi.Log
     /// </summary>
     public interface ILog
     {
+        /// <summary>
+        /// 写日志
+        /// </summary>
+        /// <param name="level">日志级别</param>
+        /// <param name="message">日志内容</param>
+        void Log(EnumLogLevel level, string message);
+
+        /// <summary>
+        /// 写日志
+        /// </summary>
+        /// <param name="level">日志级别</param>
+        /// <param name="exception">异常</param>
+        /// <param name="message">日志内容</param>
+        void Log(EnumLogLevel level, Exception exception, string message);
+
         /// <summary>
         /// 痕迹日志
         /// </summary>

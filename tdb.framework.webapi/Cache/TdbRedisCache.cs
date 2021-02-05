@@ -9,7 +9,7 @@ namespace tdb.framework.webapi.Cache
     /// <summary>
     /// 缓存
     /// </summary>
-    public class TdbCache : ICache
+    public class TdbRedisCache : ICache
     {
         /// <summary>
         /// reids缓存
@@ -20,7 +20,7 @@ namespace tdb.framework.webapi.Cache
         /// 构造函数
         /// </summary>
         /// <param name="connectionStrings">连接字符串集合</param>
-        public TdbCache(string[] connectionStrings)
+        public TdbRedisCache(string[] connectionStrings)
         {
             this.rd = new CSRedisCache(connectionStrings);
         }

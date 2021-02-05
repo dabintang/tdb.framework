@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 namespace tdb.framework.webapi.Config
 {
     /// <summary>
-    /// appsettings.json配置
+    /// 本地配置服务
     /// </summary>
-    public interface IJsonConfig
+    public interface ILocalConfig
     {
         /// <summary>
-        /// 获取appsettings.json配置信息
+        /// 获取本地配置信息
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
