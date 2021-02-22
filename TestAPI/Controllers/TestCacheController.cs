@@ -5,14 +5,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using tdb.framework.webapi.APILog;
 using tdb.framework.webapi.Cache;
 using tdb.framework.webapi.DTO;
+using tdb.framework.webapi.Log;
 
 namespace TestAPI.Controllers
 {
     /// <summary>
     /// 测试缓存服务
     /// </summary>
+    [APILog(Level = EnumLogLevel.Debug)]
     public class TestCacheController : BaseController
     {
         /// <summary>
@@ -22,6 +25,7 @@ namespace TestAPI.Controllers
         /// <returns></returns>
         [HttpPost]
         [AllowAnonymous]
+        [APILog(Level = EnumLogLevel.Info)]
         public BaseItemRes<bool> Set([FromBody] SetReq req)
         {
             Cacher.Ins.Set(req.Key, req.Value, TimeSpan.FromMinutes(1));
@@ -48,6 +52,7 @@ namespace TestAPI.Controllers
         /// <returns></returns>
         [HttpPost]
         [AllowAnonymous]
+        [APILog(Level = EnumLogLevel.Warn)]
         public BaseItemRes<bool> Del([FromBody] DelReq req)
         {
             Cacher.Ins.Del(req.Key);
@@ -61,6 +66,7 @@ namespace TestAPI.Controllers
         /// <returns></returns>
         [HttpPost]
         [AllowAnonymous]
+        [APILog(Level = EnumLogLevel.Info)]
         public BaseItemRes<bool> HSet([FromBody] HSetReq req)
         {
             Cacher.Ins.HSet(req.Key, req.Field, req.Value);
@@ -88,6 +94,7 @@ namespace TestAPI.Controllers
         /// <returns></returns>
         [HttpPost]
         [AllowAnonymous]
+        [APILog(Level = EnumLogLevel.Warn)]
         public BaseItemRes<bool> HDel([FromBody] HDelReq req)
         {
             Cacher.Ins.HDel(req.Key, req.Field);

@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "tdb.framework.webapi", "tdb.framework.webapi\tdb.framework.webapi.csproj", "{3B63C188-036D-46AC-B758-99DF97B769AB}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestAPI", "TestAPI\TestAPI.csproj", "{9FAEF847-CE66-4CC8-8702-F088D1323519}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tdb.framework.webapi", "tdb.framework.webapi\tdb.framework.webapi.csproj", "{29B68FCE-C44C-4A0A-B6F8-C764D9120878}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{3B63C188-036D-46AC-B758-99DF97B769AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3B63C188-036D-46AC-B758-99DF97B769AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3B63C188-036D-46AC-B758-99DF97B769AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3B63C188-036D-46AC-B758-99DF97B769AB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9FAEF847-CE66-4CC8-8702-F088D1323519}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9FAEF847-CE66-4CC8-8702-F088D1323519}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9FAEF847-CE66-4CC8-8702-F088D1323519}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9FAEF847-CE66-4CC8-8702-F088D1323519}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29B68FCE-C44C-4A0A-B6F8-C764D9120878}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29B68FCE-C44C-4A0A-B6F8-C764D9120878}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29B68FCE-C44C-4A0A-B6F8-C764D9120878}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29B68FCE-C44C-4A0A-B6F8-C764D9120878}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

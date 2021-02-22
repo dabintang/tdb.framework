@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Abstractions;
+using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Newtonsoft.Json;
 using System;
@@ -6,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using tdb.framework.webapi.Common;
 using tdb.framework.webapi.Log;
 
 namespace tdb.framework.webapi.APILog
@@ -15,6 +18,26 @@ namespace tdb.framework.webapi.APILog
     /// </summary>
     public class APILogActionFilterAttribute : ActionFilterAttribute
     {
+        ///// <summary>
+        ///// 获取特性
+        ///// </summary>
+        ///// <param name="actionDes"></param>
+        ///// <returns></returns>
+        //public static T GetAttribute<T>(ActionDescriptor actionDes) where T : class
+        //{
+        //    if (actionDes != null)
+        //    {
+        //        if (actionDes..ControllerTypeInfo.GetCustomAttributes(inherit: true)
+        //                                                .Any(attr => attr.GetType().Equals(typeof(AllowAnonymousAttribute)))
+        //        || actionDes.MethodInfo.GetCustomAttributes(inherit: true)
+        //                                                .Any(attr => attr.GetType().Equals(typeof(AllowAnonymousAttribute))))
+        //        {
+        //            isAnonymous = true;
+        //        }
+        //    }
+        //}
+
+
         /// <summary>
         /// 进入接口
         /// </summary>
@@ -32,7 +55,9 @@ namespace tdb.framework.webapi.APILog
                     sb.AppendLine(string.Format("参数名={0} 参数值={1}", key, strVal));
                 }
 
-                Logger.Ins.Log(EnumLogLevel.Trace, sb.ToString().Trim());
+                //取特性
+                var attr = HttpContextHelper.GetAttribute<APILogAttribute>(context);
+                Logger.Ins.Log(this.GetLogLevel(attr), sb.ToString().Trim());
             }
             catch
             {
@@ -75,7 +100,9 @@ namespace tdb.framework.webapi.APILog
                         sb.Append($"未处理类型({context.Result.GetType()})");
                     }
 
-                    Logger.Ins.Log(EnumLogLevel.Trace, sb.ToString());
+                    //取特性
+                    var attr = HttpContextHelper.GetAttribute<APILogAttribute>(context);
+                    Logger.Ins.Log(this.GetLogLevel(attr), sb.ToString());
                 }
                 else
                 {
@@ -86,6 +113,21 @@ namespace tdb.framework.webapi.APILog
             catch
             {
             }
+        }
+
+        /// <summary>
+        /// 从特性获取日志级别
+        /// </summary>
+        /// <param name="attr">特性</param>
+        /// <returns></returns>
+        private EnumLogLevel GetLogLevel(APILogAttribute attr)
+        {
+            if (attr == null)
+            {
+                return EnumLogLevel.Trace;
+            }
+
+            return attr.Level;
         }
     }
 }
