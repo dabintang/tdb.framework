@@ -62,5 +62,16 @@ namespace TestAPI.Controllers
         {
             throw new Exception("未知异常");
         }
+
+        /// <summary>
+        /// 返回JsonResult
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult ReturnJsonResult()
+        {
+            return new JsonResult(new { Value = "这是JsonResult" });
+        }
     }
 }

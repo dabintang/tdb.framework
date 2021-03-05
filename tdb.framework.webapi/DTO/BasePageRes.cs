@@ -9,28 +9,8 @@ namespace tdb.framework.webapi.DTO
     /// 分页请求结果基类
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class BasePageRes<T>
+    public class BasePageRes<T> : BaseItemRes<List<T>>
     {
-        /// <summary>
-        /// 是否成功
-        /// </summary>
-        public bool IsOK { get; set; }
-
-        /// <summary>
-        /// 消息编码
-        /// </summary>
-        public string MsgID { get; set; } = "";
-
-        /// <summary>
-        /// 消息
-        /// </summary>
-        public string Msg { get; set; } = "";
-
-        /// <summary>
-        /// 结果
-        /// </summary>
-        public List<T> Data { get; set; }
-
         /// <summary>
         /// 总条数
         /// </summary>
@@ -44,12 +24,8 @@ namespace tdb.framework.webapi.DTO
         /// <param name="msg">消息</param>
         /// <param name="data">结果</param>
         /// <param name="totalRecord">总数</param>
-        public BasePageRes(bool isOK, string msgID, string msg, List<T> data, int totalRecord)
+        public BasePageRes(bool isOK, string msgID, string msg, List<T> data, int totalRecord) : base(isOK, msgID, msg, data)
         {
-            this.IsOK = isOK;
-            this.MsgID = msgID;
-            this.Msg = msg;
-            this.Data = data;
             this.TotalRecord = totalRecord;
         }
 

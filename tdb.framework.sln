@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestAPI", "TestAPI\TestAPI.csproj", "{9FAEF847-CE66-4CC8-8702-F088D1323519}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tdb.framework.webapi", "tdb.framework.webapi\tdb.framework.webapi.csproj", "{29B68FCE-C44C-4A0A-B6F8-C764D9120878}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tdb.framework.webapi", "tdb.framework.webapi\tdb.framework.webapi.csproj", "{B69AE088-2487-4FD2-A037-604CD71CC882}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{9FAEF847-CE66-4CC8-8702-F088D1323519}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9FAEF847-CE66-4CC8-8702-F088D1323519}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9FAEF847-CE66-4CC8-8702-F088D1323519}.Release|Any CPU.Build.0 = Release|Any CPU
-		{29B68FCE-C44C-4A0A-B6F8-C764D9120878}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{29B68FCE-C44C-4A0A-B6F8-C764D9120878}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{29B68FCE-C44C-4A0A-B6F8-C764D9120878}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{29B68FCE-C44C-4A0A-B6F8-C764D9120878}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B69AE088-2487-4FD2-A037-604CD71CC882}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B69AE088-2487-4FD2-A037-604CD71CC882}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B69AE088-2487-4FD2-A037-604CD71CC882}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B69AE088-2487-4FD2-A037-604CD71CC882}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

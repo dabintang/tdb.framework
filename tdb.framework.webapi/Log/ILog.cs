@@ -75,5 +75,42 @@ namespace tdb.framework.webapi.Log
         /// <param name="ex">异常</param>
         /// <param name="msg">日志内容</param>
         void Fatal(Exception ex, string msg);
+
+        /// <summary>
+        /// 是否启用指定级别的日志
+        /// </summary>
+        /// <param name="level"></param>
+        /// <returns></returns>
+        bool IsEnabled(EnumLogLevel level);
+
+        /// <summary>
+        /// 是否启用Fatal级别日志
+        /// </summary>
+        bool IsFatalEnabled { get; }
+
+        /// <summary>
+        /// 是否启用Error级别日志
+        /// </summary>
+        bool IsErrorEnabled { get; }
+
+        /// <summary>
+        /// 是否启用Warn级别日志
+        /// </summary>
+        bool IsWarnEnabled { get; }
+
+        /// <summary>
+        /// 是否启用Info级别日志
+        /// </summary>
+        bool IsInfoEnabled { get; }
+
+        /// <summary>
+        /// 是否启用Debug级别日志
+        /// </summary>
+        bool IsDebugEnabled { get; }
+
+        /// <summary>
+        /// 是否启用Trace级别日志
+        /// </summary>
+        bool IsTraceEnabled { get; }
     }
 }
