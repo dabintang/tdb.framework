@@ -24,7 +24,7 @@ namespace tdb.framework.webapi.Log
             {
                 if (_log == null)
                 {
-                    throw new Exception("请先在[Startup.cs]的[ConfigureServices]方法内调用方法[services.AddLog]");
+                    throw new Exception("请先在[Startup.cs]的[ConfigureServices]方法内调用方法[services.AddTdbNLogger]");
                 }
 
                 return _log;

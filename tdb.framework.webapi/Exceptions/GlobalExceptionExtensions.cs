@@ -15,7 +15,7 @@ namespace tdb.framework.webapi.Exceptions
         /// <summary>
         /// 添加全局异常处理服务
         /// </summary>
-        /// <param name="services"></param>
+        /// <param name="options"></param>
         public static void AddTdbGlobalException(this MvcOptions options)
         {
             options.Filters.Add<GlobalExceptionFilter>();

@@ -16,6 +16,7 @@ using tdb.framework.webapi.Config;
 using tdb.framework.webapi.Exceptions;
 using tdb.framework.webapi.Log;
 using tdb.framework.webapi.Swagger;
+using tdb.framework.webapi.Validation;
 
 namespace TestAPI
 {
@@ -31,6 +32,9 @@ namespace TestAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //参数验证
+            services.AddTdbParamValidate();
+
             //配置
             services.AddTdbJsonConfig();
             var appConfig = LocalConfigurator.Ins.GetConfig<Controllers.AppsettingsConfig>();

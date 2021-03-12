@@ -87,9 +87,9 @@ namespace tdb.framework.webapi.APILog
                         }
                         else
                         {
-                            var value = CommHelper.ReflectGet(context.Result, "Value");
-                            if (value != null)
+                            if (CommHelper.IsExistProperty(context.Result, "Value"))
                             {
+                                var value = CommHelper.ReflectGet(context.Result, "Value");
                                 sb.Append(JsonConvert.SerializeObject(value));
                             }
                             else
