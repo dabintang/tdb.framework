@@ -35,7 +35,7 @@ namespace TestAPI.Controllers
         /// <param name="req"></param>
         /// <returns></returns>
         [HttpPost]
-        [AllowAnonymous]
+        //[AllowAnonymous]
         public BaseItemRes<TestParamValidateReq> TestParamValidate2([FromBody] TestParamValidateReq req)
         {
             return BaseItemRes<TestParamValidateReq>.Ok(req);

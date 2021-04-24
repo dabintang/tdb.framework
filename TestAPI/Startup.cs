@@ -1,15 +1,21 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
+using Newtonsoft.Json;
 using Swashbuckle.AspNetCore.SwaggerUI;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using tdb.framework.webapi.Cache;
 using tdb.framework.webapi.Config;
@@ -54,7 +60,66 @@ namespace TestAPI
                 //异常处理
                 option.AddTdbGlobalException();
             });
-            
+
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(o =>
+            {
+                o.TokenValidationParameters = new TokenValidationParameters
+                {
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("tangdabin20210419")),
+                    //不验Audience
+                    ValidateAudience = false,
+                    //不验Issuer
+                    ValidateIssuer = false,
+                    //允许的服务器时间偏移量
+                    ClockSkew = TimeSpan.Zero,
+
+                    /***********************************TokenValidationParameters的参数默认值***********************************/
+                    // RequireSignedTokens = true,
+                    // SaveSigninToken = false,
+                    // ValidateActor = false,
+                    // 将下面两个参数设置为false，可以不验证Issuer和Audience，但是不建议这样做。
+                    // ValidateAudience = true,
+                    // ValidateIssuer = true, 
+                    // ValidateIssuerSigningKey = false,
+                    // 是否要求Token的Claims中必须包含Expires
+                    // RequireExpirationTime = true,
+                    // 允许的服务器时间偏移量
+                    // ClockSkew = TimeSpan.FromSeconds(300),
+                    // 是否验证Token有效期，使用当前时间与Token的Claims中的NotBefore和Expires对比
+                    // ValidateLifetime = true
+                };
+                o.Events = new JwtBearerEvents()
+                {
+                    OnAuthenticationFailed = context =>
+                    {
+                        Logger.Ins.Fatal(context.Exception, "认证授权异常");
+                        return Task.CompletedTask;
+                    },
+                    OnForbidden = context =>
+                    {
+                        context.Response.Clear();
+                        context.Response.ContentType = "application/json";
+                        context.Response.StatusCode = 403;
+                        context.Response.WriteAsync("权限不足");
+                        return Task.CompletedTask;
+                    },
+                    OnChallenge = context =>
+                     {
+                         context.HandleResponse();
+                         context.Response.Clear();
+                         context.Response.ContentType = "application/json";
+                         context.Response.StatusCode = 401;
+                         context.Response.WriteAsync("认证未通过");
+                         return Task.CompletedTask;
+                     }
+                };
+            });
+
             //swagger
             services.AddTdbSwaggerGen(c =>
             {
@@ -72,7 +137,28 @@ namespace TestAPI
                 //参数注释
 
                 //生成token输入框
-                c.OperationFilter<SwaggerTokenFilter>();
+                //c.OperationFilter<SwaggerTokenFilter>();
+
+                //添加Authorization
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Description = "JWT Authorization header using the Bearer scheme.",
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Scheme = "bearer",
+                    Type = SecuritySchemeType.Http,
+                    BearerFormat = "JWT"
+                });
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "Bearer" }
+                        },
+                        new List<string>()
+                    }
+                });
             });
         }
 
@@ -86,6 +172,7 @@ namespace TestAPI
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             //swagger
