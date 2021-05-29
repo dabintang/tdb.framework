@@ -112,20 +112,20 @@ namespace tdb.framework.webapi.Cache
         /// 为给定 key 设置过期时间
         /// </summary>
         /// <param name="key"></param>
-        /// <param name="expire">过期时间</param>
-        public void ExpireAt(string key, DateTime expire)
+        /// <param name="expireAt">过期时间</param>
+        public void ExpireAt(string key, DateTime expireAt)
         {
-            this.rd.ExpireAt(key, expire);
+            this.rd.ExpireAt(key, expireAt);
         }
 
         /// <summary>
         /// 为给定 key 设置过期时间
         /// </summary>
         /// <param name="key"></param>
-        /// <param name="expire">过期时间</param>
-        public async Task ExpireAtAsync(string key, DateTime expire)
+        /// <param name="expireAt">过期时间</param>
+        public async Task ExpireAtAsync(string key, DateTime expireAt)
         {
-            await this.rd.ExpireAtAsync(key, expire);
+            await this.rd.ExpireAtAsync(key, expireAt);
         }
 
         /// <summary>
@@ -263,7 +263,36 @@ namespace tdb.framework.webapi.Cache
         /// <returns></returns>
         public T CacheShell<T>(string key, TimeSpan expire, Func<T> getData)
         {
-            return this.rd.CacheShell(key, expire, getData);
+            //先从缓存获取看是否已有缓存
+            var value = this.Get<T>(key);
+            if (value != null)
+            {
+                return value;
+            }
+
+            //上锁
+            using (var lockRet = LocalLock.Lock(key))
+            {
+                //再次尝试从缓存获取值
+                var valAgain = this.Get<T>(key);
+                if (valAgain != null)
+                {
+                    return valAgain;
+                }
+
+                //获取源数据
+                value = getData();
+            }
+
+            //缓存
+            if (value != null)
+            {
+                this.Set(key, value, expire);
+            }
+
+            return value;
+
+            //return this.rd.CacheShell(key, expire, getData); //这个方法把null存进缓存，这里不希望把null存进缓存
         }
 
         /// <summary>
@@ -272,12 +301,50 @@ namespace tdb.framework.webapi.Cache
         /// <typeparam name="T"></typeparam>
         /// <param name="key"></param>
         /// <param name="field">字段</param>
-        /// <param name="expire">过期时间</param>
+        /// <param name="expireAt">过期时间</param>
         /// <param name="getData">获取源数据的函数</param>
         /// <returns></returns>
-        public T CacheShell<T>(string key, string field, TimeSpan expire, Func<T> getData)
+        public T CacheShell<T>(string key, string field, DateTime expireAt, Func<T> getData)
         {
-            return this.rd.CacheShell(key, field, expire, getData);
+            //先从缓存获取看是否已有缓存
+            var value = this.HGet<T>(key, field);
+            if (value != null)
+            {
+                return value;
+            }
+
+            //上锁
+            using (var lockRet = LocalLock.Lock(key))
+            {
+                //再次尝试从缓存获取值
+                var valAgain = this.HGet<T>(key, field);
+                if (valAgain != null)
+                {
+                    return valAgain;
+                }
+
+                //获取源数据
+                value = getData();
+
+                //缓存
+                if (value != null)
+                {
+                    this.HSet(key, field, value);
+
+                    //设置过期时间
+                    Task.Factory.StartNew(async () =>
+                    {
+                        if (this.HLen(key) <= 1)
+                        {
+                            await this.ExpireAtAsync(key, expireAt);
+                        }
+                    });
+                }
+            }
+
+            return value;
+
+            //return this.rd.CacheShell(key, field, expire, getData);
         }
 
         #endregion

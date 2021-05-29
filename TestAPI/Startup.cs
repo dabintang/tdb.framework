@@ -1,3 +1,6 @@
+using Autofac;
+using Autofac.Extras.DynamicProxy;
+using Castle.DynamicProxy;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -17,6 +20,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using tdb.framework.webapi.Auth;
 using tdb.framework.webapi.Cache;
 using tdb.framework.webapi.Config;
 using tdb.framework.webapi.Exceptions;
@@ -70,6 +74,8 @@ namespace TestAPI
             {
                 o.TokenValidationParameters = new TokenValidationParameters
                 {
+                    NameClaimType = TdbClaimTypes.Name,
+                    RoleClaimType = TdbClaimTypes.Role,
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("tangdabin20210419")),
                     //不验Audience
                     ValidateAudience = false,
@@ -187,6 +193,21 @@ namespace TestAPI
             {
                 endpoints.MapControllers();
             });
+        }
+
+        /// <summary>
+        /// autofac容器注册服务
+        /// </summary>
+        /// <param name="builder"></param>
+        public void ConfigureContainer(ContainerBuilder builder)
+        {
+            // 类型注入
+            builder.Register(c => new Controllers.CallLogger(Console.Out));
+
+            //启用接口代理拦截
+            //builder.RegisterType<Controllers.Circle>().AsImplementedInterfaces().EnableInterfaceInterceptors().InstancePerLifetimeScope();
+            builder.RegisterType<Controllers.Circle>().Named<Controllers.IShape>(typeof(Controllers.Circle).Name).AsImplementedInterfaces().EnableInterfaceInterceptors().InstancePerLifetimeScope();
+            builder.RegisterType<Controllers.Circle0>().Named<Controllers.IShape>(typeof(Controllers.Circle0).Name).AsImplementedInterfaces().EnableInterfaceInterceptors().InstancePerLifetimeScope();
         }
     }
 }

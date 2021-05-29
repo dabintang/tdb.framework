@@ -46,8 +46,9 @@ namespace tdb.framework.webapi.APILog
                     Logger.Ins.Log(logLevel, sb.ToString().Trim());
                 }
             }
-            catch
+            catch (Exception ex)
             {
+                Logger.Ins.Error(ex, "进入接口写日志异常");
             }
 
             base.OnActionExecuting(context);
@@ -107,8 +108,9 @@ namespace tdb.framework.webapi.APILog
                     }
                 }
             }
-            catch
+            catch (Exception ex)
             {
+                Logger.Ins.Error(ex, "离开接口写日志异常");
             }
         }
 

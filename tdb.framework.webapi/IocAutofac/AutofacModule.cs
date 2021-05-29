@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using Autofac.Extras.DynamicProxy;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -18,17 +19,17 @@ namespace tdb.framework.webapi.IocAutofac
         protected override void Load(ContainerBuilder builder)
         {
             //所有要实现依赖注入的借口都要继承该接口
-            var baseType = typeof(IAutofacDependency);
+            var baseType = this.GetRegisterBaseType();
 
-            //获取需要注册的程序集名称集合
-            var lstAssemblyName = this.GetRegisterAssemblyNames();
+            //获取需要注册的程序集集合
+            var lstAssembly = this.GetRegisterAssemblys();
 
-            foreach (var assemblyName in lstAssemblyName)
+            foreach (var assembly in lstAssembly)
             {
                 //注册程序集中的对象
-                builder.RegisterAssemblyTypes(GetAssemblyByName(assemblyName)).Where(m => baseType.IsAssignableFrom(m) && m != baseType)
+                builder.RegisterAssemblyTypes(assembly).Where(m => baseType.IsAssignableFrom(m) && m != baseType)
                        .AsImplementedInterfaces()//表示注册的类型，以接口的方式注册
-                       //.EnableInterfaceInterceptors()//引用Autofac.Extras.DynamicProxy,使用接口的拦截器，在使用特性 [Attribute] 注册时，注册拦截器可注册到接口(Interface)上或其实现类(Implement)上。使用注册到接口上方式，所有的实现类都能应用到拦截器。
+                       .EnableInterfaceInterceptors()//引用Autofac.Extras.DynamicProxy,使用接口的拦截器，在使用特性 [Attribute] 注册时，注册拦截器可注册到接口(Interface)上或其实现类(Implement)上。使用注册到接口上方式，所有的实现类都能应用到拦截器。
                        .InstancePerLifetimeScope();//同一个Lifetime生成的对象是同一个实例
             }
 
@@ -42,22 +43,21 @@ namespace tdb.framework.webapi.IocAutofac
         }
 
         /// <summary>
-        /// 根据程序集名称获取程序集
+        /// 获取需要注册的基本类型
         /// </summary>
-        /// <param name="assemblyName">程序集名称</param>
         /// <returns></returns>
-        private Assembly GetAssemblyByName(string assemblyName)
+        protected virtual Type GetRegisterBaseType()
         {
-            return Assembly.Load(assemblyName);
+            return typeof(IAutofacDependency);
         }
 
         /// <summary>
         /// 获取需要注册的程序集名称集合
         /// </summary>
         /// <returns></returns>
-        protected virtual List<string> GetRegisterAssemblyNames()
+        protected virtual List<Assembly> GetRegisterAssemblys()
         {
-            return new List<string>();
+            return new List<Assembly>();
         }
     }
 

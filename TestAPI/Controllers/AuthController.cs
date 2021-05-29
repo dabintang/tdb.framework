@@ -10,6 +10,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using tdb.framework.webapi.APILog;
+using tdb.framework.webapi.Auth;
 using tdb.framework.webapi.DTO;
 using tdb.framework.webapi.Log;
 
@@ -37,14 +38,8 @@ namespace TestAPI.Controllers
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    //new Claim(JwtClaimTypes.Audience,"api"),
-                    //new Claim(JwtClaimTypes.Issuer,"http://localhost:5200"),
-                    //new Claim(JwtClaimTypes.Id, user.Id.ToString()),
-                    //new Claim(JwtClaimTypes.Name, user.Name),
-                    //new Claim(JwtClaimTypes.Email, user.Email),
-                    //new Claim(JwtClaimTypes.PhoneNumber, user.PhoneNumber)
-                    new Claim(ClaimTypes.Name, "张三"),
-                    new Claim(ClaimTypes.Role, req.Role)
+                    new Claim(TdbClaimTypes.Name, "张三"),
+                    new Claim(TdbClaimTypes.Role, req.Role)
                 }),
                 //Issuer = "tdb",
                 //Audience = "api",
@@ -68,7 +63,7 @@ namespace TestAPI.Controllers
         {
             //HttpContext.User
 
-            return BaseItemRes<string>.Ok(HttpContext.User.FindFirst(ClaimTypes.Name).Value);
+            return BaseItemRes<string>.Ok(HttpContext.User.FindFirst(TdbClaimTypes.Name).Value);
         }
 
         /// <summary>
@@ -81,7 +76,7 @@ namespace TestAPI.Controllers
         {
             //HttpContext.User
 
-            return BaseItemRes<string>.Ok(HttpContext.User.FindFirst(ClaimTypes.Name).Value);
+            return BaseItemRes<string>.Ok(HttpContext.User.FindFirst(TdbClaimTypes.Name).Value);
         }
     }
 

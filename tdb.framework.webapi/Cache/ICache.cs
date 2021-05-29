@@ -71,15 +71,15 @@ namespace tdb.framework.webapi.Cache
         /// 为给定 key 设置过期时间
         /// </summary>
         /// <param name="key"></param>
-        /// <param name="expire">过期时间</param>
-        void ExpireAt(string key, DateTime expire);
+        /// <param name="expireAt">过期时间</param>
+        void ExpireAt(string key, DateTime expireAt);
 
         /// <summary>
         /// 为给定 key 设置过期时间
         /// </summary>
         /// <param name="key"></param>
-        /// <param name="expire">过期时间</param>
-        Task ExpireAtAsync(string key, DateTime expire);
+        /// <param name="expireAt">过期时间</param>
+        Task ExpireAtAsync(string key, DateTime expireAt);
 
         /// <summary>
         /// 查找所有分区节点中符合给定模式(pattern)的 key
@@ -186,9 +186,9 @@ namespace tdb.framework.webapi.Cache
         /// <typeparam name="T"></typeparam>
         /// <param name="key"></param>
         /// <param name="field">字段</param>
-        /// <param name="expire">过期时间</param>
+        /// <param name="expireAt">过期时间</param>
         /// <param name="getData">获取源数据的函数</param>
         /// <returns></returns>
-        T CacheShell<T>(string key, string field, TimeSpan expire, Func<T> getData);
+        T CacheShell<T>(string key, string field, DateTime expireAt, Func<T> getData);
     }
 }
