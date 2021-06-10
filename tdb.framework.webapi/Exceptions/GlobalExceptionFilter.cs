@@ -36,12 +36,11 @@ namespace tdb.framework.webapi.Exceptions
                 //写日志
                 try
                 {
-                    Exception ex = context.Exception;
-                    Logger.Ins.Error(ex, ex.Message);
+                    Logger.Ins.Error(context.Exception, context.Exception.Message);
                 }
                 catch
                 {
-                    Console.WriteLine("[HttpGlobalExceptionFilter.OnException]未加载日志服务");
+                    Console.WriteLine($"[HttpGlobalExceptionFilter.OnException]未加载日志服务，ex：{context.Exception.Message}");
                 }
 
                 context.ExceptionHandled = true; //异常已处理了
