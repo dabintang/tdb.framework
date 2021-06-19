@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,6 +12,19 @@ namespace tdb.framework.webapi.Config
     /// </summary>
     public class TdbJsonConfig : ILocalConfig
     {
+        /// <summary>
+        /// 配置重新加载事件
+        /// </summary>
+        public event AppsettingsConfigHelper._ConfigReload ConfigReload;
+
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        public TdbJsonConfig()
+        {
+            AppsettingsConfigHelper.ConfigReload += OnConfigReload;
+        }
+
         #region 实现接口
 
         /// <summary>
@@ -24,5 +38,17 @@ namespace tdb.framework.webapi.Config
         }
 
         #endregion
+
+        /// <summary>
+        /// 配置重新加载
+        /// </summary>
+        /// <param name="config"></param>
+        private void OnConfigReload(IConfigurationRoot config)
+        {
+            if (this.ConfigReload != null)
+            {
+                this.ConfigReload(config);
+            }
+        }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using tdb.appsettings;
 
 namespace tdb.framework.webapi.Config
 {
@@ -16,5 +17,10 @@ namespace tdb.framework.webapi.Config
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
         T GetConfig<T>() where T : class, new();
+
+        /// <summary>
+        /// 配置重新加载事件
+        /// </summary>
+        event AppsettingsConfigHelper._ConfigReload ConfigReload;
     }
 }
