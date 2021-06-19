@@ -101,6 +101,47 @@ namespace TestAPI.Controllers
             return BaseItemRes<bool>.Ok(true);
         }
 
+        /// <summary>
+        /// 设置缓存
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        [AllowAnonymous]
+        public BaseItemRes<bool> CacheShellInt()
+        {
+            int i = 1;
+            Cacher.Ins.CacheShell("abc", TimeSpan.FromSeconds(10), () => i);
+
+            return BaseItemRes<bool>.Ok(true);
+        }
+
+        /// <summary>
+        /// 设置缓存
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        [AllowAnonymous]
+        public BaseItemRes<bool> CacheShellNullableInt()
+        {
+            int? i = 1;
+            Cacher.Ins.CacheShell("abc", TimeSpan.FromSeconds(10), () => i);
+
+            return BaseItemRes<bool>.Ok(true);
+        }
+
+        /// <summary>
+        /// 设置缓存
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        [AllowAnonymous]
+        public BaseItemRes<bool> CacheShellString()
+        {
+            Cacher.Ins.CacheShell("abc", TimeSpan.FromSeconds(10), () => "abc");
+
+            return BaseItemRes<bool>.Ok(true);
+        }
+
         public class DelReq
         {
             public string Key { get; set; }

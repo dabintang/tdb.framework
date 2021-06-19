@@ -7,6 +7,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
+using tdb.framework.webapi.Cache;
 using tdb.framework.webapi.DTO;
 using tdb.framework.webapi.Exceptions;
 
@@ -73,6 +74,24 @@ namespace TestAPI.Controllers
         public IActionResult ReturnJsonResult()
         {
             return new JsonResult(new { Value = "这是JsonResult" });
+        }
+
+        /// <summary>
+        /// 对key上锁
+        /// </summary>
+        /// <param name="key">key</param>
+        /// <param name="lockSeconds">上锁时间（秒）</param>
+        /// <returns></returns>
+        [HttpGet]
+        [AllowAnonymous]
+        public BaseItemRes<string> Lock(string key, int lockSeconds)
+        {
+            using (var lockRet = LocalLock.Lock(key))
+            {
+                Thread.Sleep(lockSeconds * 1000);
+            }
+
+            return BaseItemRes<string>.Ok(key);
         }
     }
 }

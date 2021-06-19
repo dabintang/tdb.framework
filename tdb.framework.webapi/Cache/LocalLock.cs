@@ -27,8 +27,19 @@ namespace tdb.framework.webapi.Cache
         public static LocalLock Lock(string key, int maxWaitSeconds = 60)
         {
             DateTime startTime = DateTime.Now;
+            string lockVal = null;
 
-            var lockVal = memoryCache.Get<string>(key);
+            //保证lock时间比较短
+            lock (memoryCache)
+            {
+                lockVal = memoryCache.Get<string>(key);
+                if (lockVal == null)
+                {
+                    memoryCache.Set(key, "", TimeSpan.FromSeconds(MaxLockSecond));
+                    return new LocalLock(key, false);
+                }
+            }
+
             while (lockVal != null)
             {
                 //超过等待
@@ -38,9 +49,20 @@ namespace tdb.framework.webapi.Cache
                 }
 
                 Thread.Sleep(30);
-                lockVal = memoryCache.Get<string>(key);
+
+                //保证lock时间比较短
+                lock (memoryCache)
+                {
+                    lockVal = memoryCache.Get<string>(key);
+                    if (lockVal == null)
+                    {
+                        memoryCache.Set(key, "", TimeSpan.FromSeconds(MaxLockSecond));
+                        return new LocalLock(key, false);
+                    }
+                }
             }
 
+            //代码应该不会进来到这里
             memoryCache.Set(key, "", TimeSpan.FromSeconds(MaxLockSecond));
             return new LocalLock(key, false);
         }
@@ -66,7 +88,7 @@ namespace tdb.framework.webapi.Cache
         /// <summary>
         /// 最大上锁时间（100秒）
         /// </summary>
-        public const int MaxLockSecond = 100;
+        public const int MaxLockSecond = 1000;
 
         #endregion
 
@@ -98,31 +120,31 @@ namespace tdb.framework.webapi.Cache
         #endregion
     }
 
-    /// <summary>
-    /// 加锁执行的方法返回类型
-    /// </summary>
-    public class LockResult<T>
-    {
-        /// <summary>
-        /// 是否已执行方法
-        /// </summary>
-        public bool IsDone { get; private set; }
+    ///// <summary>
+    ///// 加锁执行的方法返回类型
+    ///// </summary>
+    //public class LockResult<T>
+    //{
+    //    /// <summary>
+    //    /// 是否已执行方法
+    //    /// </summary>
+    //    public bool IsDone { get; private set; }
 
-        /// <summary>
-        /// 结果
-        /// </summary>
-        public T Result { get; private set; }
+    //    /// <summary>
+    //    /// 结果
+    //    /// </summary>
+    //    public T Result { get; private set; }
 
-        /// <summary>
-        /// 构造函数
-        /// </summary>
-        /// <param name="isDone"></param>
-        /// <param name="result"></param>
-        public LockResult(bool isDone, T result)
-        {
-            this.IsDone = isDone;
-            this.Result = result;
-        }
-    }
+    //    /// <summary>
+    //    /// 构造函数
+    //    /// </summary>
+    //    /// <param name="isDone"></param>
+    //    /// <param name="result"></param>
+    //    public LockResult(bool isDone, T result)
+    //    {
+    //        this.IsDone = isDone;
+    //        this.Result = result;
+    //    }
+    //}
 
 }

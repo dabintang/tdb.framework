@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using tdb.common;
 using tdb.csredis;
+using tdb.framework.webapi.Exceptions;
 
 namespace tdb.framework.webapi.Cache
 {
@@ -256,13 +258,19 @@ namespace tdb.framework.webapi.Cache
         /// <summary>
         /// 缓存壳
         /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="T">必须是可空类型</typeparam>
         /// <param name="key"></param>
         /// <param name="expire">过期时间</param>
         /// <param name="getData">获取源数据的函数</param>
         /// <returns></returns>
         public T CacheShell<T>(string key, TimeSpan expire, Func<T> getData)
         {
+            //必须是可空类型才能用这个缓存方法，否则无法判断是否已有缓存
+            if (CheckHelper.IsNullableType(typeof(T)) == false)
+            {
+                throw new TdbException("必须是可空类型才能用[TdbRedisCache.CacheShell]缓存方法");
+            }
+
             //先从缓存获取看是否已有缓存
             var value = this.Get<T>(key);
             if (value != null)
@@ -291,14 +299,12 @@ namespace tdb.framework.webapi.Cache
             }
 
             return value;
-
-            //return this.rd.CacheShell(key, expire, getData); //这个方法把null存进缓存，这里不希望把null存进缓存
         }
 
         /// <summary>
         /// 缓存壳(哈希表)
         /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="T">必须是可空类型</typeparam>
         /// <param name="key"></param>
         /// <param name="field">字段</param>
         /// <param name="expireAt">过期时间</param>
@@ -306,6 +312,12 @@ namespace tdb.framework.webapi.Cache
         /// <returns></returns>
         public T CacheShell<T>(string key, string field, DateTime expireAt, Func<T> getData)
         {
+            //必须是可空类型才能用这个缓存方法，否则无法判断是否已有缓存
+            if (CheckHelper.IsNullableType(typeof(T)) == false)
+            {
+                throw new TdbException("必须是可空类型才能用[TdbRedisCache.CacheShell]缓存方法");
+            }
+
             //先从缓存获取看是否已有缓存
             var value = this.HGet<T>(key, field);
             if (value != null)
@@ -343,8 +355,6 @@ namespace tdb.framework.webapi.Cache
             }
 
             return value;
-
-            //return this.rd.CacheShell(key, field, expire, getData);
         }
 
         #endregion
