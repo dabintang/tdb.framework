@@ -44,9 +44,10 @@ namespace tdb.framework.webapi.Log
         /// </summary>
         /// <param name="connectionString">MySQL数据库连接字符串</param>
         /// <param name="serviceCode">服务编码</param>
-        internal static void InitMySqlNLog(string connectionString, string serviceCode = "TDB")
+        /// <param name="serviceAddress">服务地址</param>
+        internal static void InitMySqlNLog(string connectionString, string serviceCode = "", string serviceAddress = "")
         {
-            _log = new TdbNLog(connectionString, serviceCode);
+            _log = new TdbNLog(connectionString, serviceCode, serviceAddress);
         }
 
         /// <summary>

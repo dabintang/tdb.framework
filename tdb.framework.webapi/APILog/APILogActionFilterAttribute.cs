@@ -1,6 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Abstractions;
-using Microsoft.AspNetCore.Mvc.Controllers;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Newtonsoft.Json;
 using System;
@@ -9,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using tdb.common;
+using tdb.framework.webapi.Auth;
 using tdb.framework.webapi.Common;
 using tdb.framework.webapi.Log;
 
@@ -35,7 +35,7 @@ namespace tdb.framework.webapi.APILog
                 if (Logger.Ins.IsEnabled(logLevel))
                 {
                     var sb = new StringBuilder();
-                    sb.AppendLine(string.Format("进入接口 接口={0} 标识={1}", context.ActionDescriptor.DisplayName, context.HttpContext.GetHashCode()));
+                    sb.AppendLine(string.Format("进入接口 SID={0} 接口={1} 标识={2}", this.GetSID(context.HttpContext), context.ActionDescriptor.DisplayName, context.HttpContext.GetHashCode()));
                     sb.AppendLine("入参：");
                     foreach (var key in context.ActionArguments.Keys)
                     {
@@ -72,7 +72,7 @@ namespace tdb.framework.webapi.APILog
                 if (Logger.Ins.IsEnabled(logLevel))
                 {
                     var sb = new StringBuilder();
-                    sb.AppendLine(string.Format("离开接口 接口={0} 标识={1}", context.ActionDescriptor.DisplayName, context.HttpContext.GetHashCode()));
+                    sb.AppendLine(string.Format("离开接口 SID={0} 接口={1} 标识={2}", this.GetSID(context.HttpContext), context.ActionDescriptor.DisplayName, context.HttpContext.GetHashCode()));
 
                     if (context.Exception == null)
                     {
@@ -127,6 +127,22 @@ namespace tdb.framework.webapi.APILog
             }
 
             return attr.Level;
+        }
+
+        /// <summary>
+        /// 获取登录名
+        /// </summary>
+        /// <param name="context">http上下文</param>
+        /// <returns></returns>
+        private string GetSID(HttpContext context)
+        {
+            //无认证用户
+            if (context == null || context.User == null)
+            {
+                return "";
+            }
+
+            return context.User.FindFirst(TdbClaimTypes.SID)?.Value ?? "";
         }
     }
 }

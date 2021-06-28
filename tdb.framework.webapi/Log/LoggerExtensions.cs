@@ -26,9 +26,10 @@ namespace tdb.framework.webapi.Log
         /// <param name="services"></param>
         /// <param name="connectionString">MySQL数据库连接字符串</param>
         /// <param name="serviceCode">服务编码</param>
-        public static void AddTdbMySqlNLogger(this IServiceCollection services, string connectionString, string serviceCode = "TDB")
+        /// <param name="serviceAddress">服务地址</param>
+        public static void AddTdbMySqlNLogger(this IServiceCollection services, string connectionString, string serviceCode = "", string serviceAddress = "")
         {
-            Logger.InitMySqlNLog(connectionString, serviceCode);
+            Logger.InitMySqlNLog(connectionString, serviceCode, serviceAddress);
         }
 
         /// <summary>

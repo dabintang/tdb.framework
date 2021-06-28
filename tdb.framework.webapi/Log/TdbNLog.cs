@@ -30,9 +30,10 @@ namespace tdb.framework.webapi.Log
         /// </summary>
         /// <param name="connectionString">MySQL数据库连接字符串</param>
         /// <param name="serviceCode">服务编码</param>
-        public TdbNLog(string connectionString, string serviceCode = "TDB")
+        /// <param name="serviceAddress">服务地址</param>
+        public TdbNLog(string connectionString, string serviceCode = "", string serviceAddress = "")
         {
-            this._log = new NLogger(connectionString, serviceCode);
+            this._log = new NLogger(connectionString, serviceCode, serviceAddress);
         }
 
         #region 实现接口

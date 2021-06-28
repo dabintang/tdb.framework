@@ -56,7 +56,7 @@ namespace TestAPI
 
             //日志
             //services.AddTdbNLogger();
-            services.AddTdbMySqlNLogger(consulConfig.MySqlLogConnStr, $"{appConfig.Consul.ServiceCode}_{appConfig.ApiUrl}");
+            services.AddTdbMySqlNLogger(consulConfig.MySqlLogConnStr, appConfig.Consul.ServiceCode, appConfig.ApiUrl);
 
             services.AddControllers(option => {
                 //API日志

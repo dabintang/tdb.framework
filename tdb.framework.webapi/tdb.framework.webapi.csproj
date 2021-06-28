@@ -23,11 +23,11 @@
     <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="5.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.4" />
     <PackageReference Include="tdb.appsettings" Version="2.1.0.4" />
-    <PackageReference Include="tdb.common" Version="2.1.0.8" />
+    <PackageReference Include="tdb.common" Version="2.1.0.9" />
     <PackageReference Include="tdb.consul.kv" Version="2.1.0.4" />
     <PackageReference Include="tdb.consul.services" Version="2.1.0.3" />
     <PackageReference Include="tdb.csredis" Version="2.1.0.3" />
-    <PackageReference Include="tdb.nlog.mysql" Version="2.1.0.6" />
+    <PackageReference Include="tdb.nlog.mysql" Version="2.1.0.7" />
   </ItemGroup>
   
   <PropertyGroup>
