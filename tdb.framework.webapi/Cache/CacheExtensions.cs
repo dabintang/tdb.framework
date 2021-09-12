@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,16 @@ namespace tdb.framework.webapi.Cache
         public static void AddTdbRedisCache(this IServiceCollection services, string[] connectionStrings)
         {
             Cacher.InitRedisCache(connectionStrings);
+        }
+
+        /// <summary>
+        /// 添加缓存服务
+        /// </summary>
+        /// <param name="services"></param>
+        /// <param name="option">内存缓存配置</param>
+        public static void AddTdbMemoryCache(this IServiceCollection services, MemoryCacheOptions option = null)
+        {
+            services.AddTdbCache(() => new TdbMemoryCache(option));
         }
 
         /// <summary>

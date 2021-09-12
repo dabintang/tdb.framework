@@ -52,7 +52,8 @@ namespace TestAPI
             var consulConfig = DistributedConfigurator.Ins.GetConfig<Controllers.ConsulConfig>();
 
             //ª∫¥Ê
-            services.AddTdbRedisCache(consulConfig.Redis.ConnectString.ToArray());
+            //services.AddTdbRedisCache(consulConfig.Redis.ConnectString.ToArray());
+            services.AddTdbMemoryCache();
 
             //»’÷æ
             //services.AddTdbNLogger();

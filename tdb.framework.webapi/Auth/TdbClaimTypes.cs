@@ -10,9 +10,9 @@ namespace tdb.framework.webapi.Auth
     public class TdbClaimTypes
     {
         /// <summary>
-        /// 用户编码
+        /// 用户编号
         /// </summary>
-        public const string SID = "tdb_sid";
+        public const string UID = "tdb_uid";
 
         /// <summary>
         /// 用户名

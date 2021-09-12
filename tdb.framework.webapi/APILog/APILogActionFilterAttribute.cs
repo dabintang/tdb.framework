@@ -35,7 +35,7 @@ namespace tdb.framework.webapi.APILog
                 if (Logger.Ins.IsEnabled(logLevel))
                 {
                     var sb = new StringBuilder();
-                    sb.AppendLine(string.Format("进入接口 SID={0} 接口={1} 标识={2}", this.GetSID(context.HttpContext), context.ActionDescriptor.DisplayName, context.HttpContext.GetHashCode()));
+                    sb.AppendLine(string.Format("进入接口 SID={0} 接口={1} 标识={2}", this.GetUID(context.HttpContext), context.ActionDescriptor.DisplayName, context.HttpContext.GetHashCode()));
                     sb.AppendLine("入参：");
                     foreach (var key in context.ActionArguments.Keys)
                     {
@@ -72,7 +72,7 @@ namespace tdb.framework.webapi.APILog
                 if (Logger.Ins.IsEnabled(logLevel))
                 {
                     var sb = new StringBuilder();
-                    sb.AppendLine(string.Format("离开接口 SID={0} 接口={1} 标识={2}", this.GetSID(context.HttpContext), context.ActionDescriptor.DisplayName, context.HttpContext.GetHashCode()));
+                    sb.AppendLine(string.Format("离开接口 SID={0} 接口={1} 标识={2}", this.GetUID(context.HttpContext), context.ActionDescriptor.DisplayName, context.HttpContext.GetHashCode()));
 
                     if (context.Exception == null)
                     {
@@ -130,11 +130,11 @@ namespace tdb.framework.webapi.APILog
         }
 
         /// <summary>
-        /// 获取登录名
+        /// 获取登录人编号
         /// </summary>
         /// <param name="context">http上下文</param>
         /// <returns></returns>
-        private string GetSID(HttpContext context)
+        private string GetUID(HttpContext context)
         {
             //无认证用户
             if (context == null || context.User == null)
@@ -142,7 +142,7 @@ namespace tdb.framework.webapi.APILog
                 return "";
             }
 
-            return context.User.FindFirst(TdbClaimTypes.SID)?.Value ?? "";
+            return context.User.FindFirst(TdbClaimTypes.UID)?.Value ?? "";
         }
     }
 }

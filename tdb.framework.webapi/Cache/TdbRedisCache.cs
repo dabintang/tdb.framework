@@ -9,7 +9,7 @@ using tdb.framework.webapi.Exceptions;
 namespace tdb.framework.webapi.Cache
 {
     /// <summary>
-    /// 缓存
+    /// redis缓存
     /// </summary>
     public class TdbRedisCache : ICache
     {
