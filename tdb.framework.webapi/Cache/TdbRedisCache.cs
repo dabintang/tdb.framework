@@ -310,7 +310,7 @@ namespace tdb.framework.webapi.Cache
         /// <param name="expireAt">过期时间</param>
         /// <param name="getData">获取源数据的函数</param>
         /// <returns></returns>
-        public T CacheShell<T>(string key, string field, DateTime expireAt, Func<T> getData)
+        public T HCacheShell<T>(string key, string field, DateTime expireAt, Func<T> getData)
         {
             //必须是可空类型才能用这个缓存方法，否则无法判断是否已有缓存
             if (CheckHelper.IsNullableType(typeof(T)) == false)

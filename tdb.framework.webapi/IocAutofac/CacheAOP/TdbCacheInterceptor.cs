@@ -52,7 +52,7 @@ namespace tdb.framework.webapi.IocAutofac.CacheAOP
                 var expireAt = DateTime.Today.AddDays(attrReadHash.TimeoutDays);
                 expireAt = Convert.ToDateTime($"{expireAt.ToString("yyyy-MM-dd")} {attrReadHash.ExpireAtTime}", new DateTimeFormatInfo() { FullDateTimePattern = "yyyy-MM-dd HH:mm:ss" });
 
-                var returnValue = Cacher.Ins.CacheShell(attrReadHash.Key, keyFields, expireAt, () =>
+                var returnValue = Cacher.Ins.HCacheShell(attrReadHash.Key, keyFields, expireAt, () =>
                 {
                     //执行被拦截的方法
                     invocation.Proceed();

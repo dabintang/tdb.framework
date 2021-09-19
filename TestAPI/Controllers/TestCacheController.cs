@@ -137,7 +137,20 @@ namespace TestAPI.Controllers
         [AllowAnonymous]
         public BaseItemRes<bool> CacheShellString()
         {
-            Cacher.Ins.CacheShell("abc", TimeSpan.FromSeconds(10), () => "abc");
+            Cacher.Ins.CacheShell("abc", TimeSpan.FromSeconds(100), () => "abc");
+
+            return BaseItemRes<bool>.Ok(true);
+        }
+
+        /// <summary>
+        /// 设置缓存
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        [AllowAnonymous]
+        public BaseItemRes<bool> HCacheShellString()
+        {
+            Cacher.Ins.HCacheShell("abc", "123", DateTime.Now.AddSeconds(10), () => "abc");
 
             return BaseItemRes<bool>.Ok(true);
         }

@@ -189,6 +189,6 @@ namespace tdb.framework.webapi.Cache
         /// <param name="expireAt">过期时间</param>
         /// <param name="getData">获取源数据的函数</param>
         /// <returns></returns>
-        T CacheShell<T>(string key, string field, DateTime expireAt, Func<T> getData);
+        T HCacheShell<T>(string key, string field, DateTime expireAt, Func<T> getData);
     }
 }
