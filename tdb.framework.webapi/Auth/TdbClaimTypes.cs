@@ -23,5 +23,10 @@ namespace tdb.framework.webapi.Auth
         /// 角色编码
         /// </summary>
         public const string Role = "tdb_role";
+
+        /// <summary>
+        /// 客户端IP
+        /// </summary>
+        public const string ClientIP = "tdb_client_ip";
     }
 }
