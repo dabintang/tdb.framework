@@ -1,37 +1,27 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
-    <Version>2.1.0.30</Version>
+    <TargetFramework>net5.0</TargetFramework>
+    <Version>5.0.0.5</Version>
     <Authors>tangdabin</Authors>
     <Company>tdb</Company>
-    <Description>webapi框架</Description>
-    <PackageReleaseNotes>webapi框架</PackageReleaseNotes>
+    <Description>tdb webapi 框架</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/dabintang/tdb.framework</PackageProjectUrl>
     <PackageTags>tdb</PackageTags>
+    <PackageReleaseNotes>webapi 框架</PackageReleaseNotes>
+    <ApplicationIcon />
+    <OutputType>Library</OutputType>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Autofac" Version="6.3.0" />
-    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.1.0" />
-    <PackageReference Include="Autofac.Extras.DynamicProxy" Version="6.0.0" />
-    <PackageReference Include="AutoMapper" Version="10.1.1" />
-    <PackageReference Include="HttpReports" Version="2.6.3" />
-    <PackageReference Include="HttpReports.Transport.Http" Version="2.6.3" />
-    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="5.0.0" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.2" />
-    <PackageReference Include="tdb.appsettings" Version="2.1.0.4" />
-    <PackageReference Include="tdb.common" Version="2.1.0.11" />
-    <PackageReference Include="tdb.consul.kv" Version="2.1.0.5" />
-    <PackageReference Include="tdb.consul.services" Version="2.1.0.4" />
-    <PackageReference Include="tdb.csredis" Version="2.1.0.3" />
-    <PackageReference Include="tdb.nlog.mysql" Version="2.1.0.8" />
+    <ProjectReference Include="..\tdb.framework.webapi.standard\tdb.framework.webapi.standard.csproj" />
   </ItemGroup>
-  
-  <PropertyGroup>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.11" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.0.0" />
+  </ItemGroup>
 
 </Project>
