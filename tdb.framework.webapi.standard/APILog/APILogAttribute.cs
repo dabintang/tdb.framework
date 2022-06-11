@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using tdb.framework.webapi.standard.Log;
 
-namespace tdb.framework.webapi.standard.APILog
+namespace tdb.framework.webapi.standard
 {
     /// <summary>
     /// 调用API日志

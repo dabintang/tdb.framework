@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace tdb.framework.webapi.standard.DTO
+namespace tdb.framework.webapi.standard
 {
     /// <summary>
     /// 返回单条记录的结果

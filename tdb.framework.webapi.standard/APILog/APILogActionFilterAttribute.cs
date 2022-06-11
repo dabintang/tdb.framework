@@ -8,11 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using tdb.common;
-using tdb.framework.webapi.standard.Auth;
-using tdb.framework.webapi.standard.Common;
-using tdb.framework.webapi.standard.Log;
 
-namespace tdb.framework.webapi.standard.APILog
+namespace tdb.framework.webapi.standard
 {
     /// <summary>
     /// 调接口日志过滤器特性

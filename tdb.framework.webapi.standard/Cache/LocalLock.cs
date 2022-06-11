@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 
-namespace tdb.framework.webapi.standard.Cache
+namespace tdb.framework.webapi.standard
 {
     /// <summary>
     /// 本地锁，按字符串锁

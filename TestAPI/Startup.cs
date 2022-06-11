@@ -14,16 +14,9 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using tdb.framework.webapi.standard.Auth;
-using tdb.framework.webapi.standard.Cache;
-using tdb.framework.webapi.standard.Config;
-using tdb.framework.webapi.standard.Exceptions;
-using tdb.framework.webapi.standard.Log;
-using tdb.framework.webapi.standard.Validation;
-using tdb.framework.webapi.Swagger;
-using tdb.framework.webapi.APIVersion;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
-using tdb.framework.webapi.Auth;
+using tdb.framework.webapi;
+using tdb.framework.webapi.standard;
 
 namespace TestAPI
 {

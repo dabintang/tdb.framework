@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace tdb.framework.webapi.standard.Validation
+namespace tdb.framework.webapi.standard
 {
     /// <summary>
     /// 参数验证

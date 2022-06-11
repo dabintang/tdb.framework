@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using tdb.common;
 using tdb.consul.kv;
 
-namespace tdb.framework.webapi.standard.Config
+namespace tdb.framework.webapi.standard
 {
     /// <summary>
     /// 放在consul的kv上的配置

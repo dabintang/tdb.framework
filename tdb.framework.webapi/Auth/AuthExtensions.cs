@@ -8,10 +8,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using tdb.framework.webapi.standard.Auth;
-using tdb.framework.webapi.standard.Log;
+using tdb.framework.webapi.standard;
 
-namespace tdb.framework.webapi.Auth
+namespace tdb.framework.webapi
 {
     /// <summary>
     /// 验权

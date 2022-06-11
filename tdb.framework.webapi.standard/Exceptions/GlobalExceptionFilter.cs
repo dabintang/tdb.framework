@@ -3,9 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using tdb.framework.webapi.standard.Log;
 
-namespace tdb.framework.webapi.standard.Exceptions
+namespace tdb.framework.webapi.standard
 {
     /// <summary>
     /// 全局异常捕获过滤器

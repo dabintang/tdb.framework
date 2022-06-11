@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace tdb.framework.webapi.standard.IocAutofac.CacheAOP
+namespace tdb.framework.webapi.standard
 {
     /// <summary>
     /// 缓存key获取方法特性

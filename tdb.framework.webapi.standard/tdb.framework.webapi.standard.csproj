@@ -2,11 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
-    <Version>2.1.1.1</Version>
+    <Version>2.1.1.2</Version>
     <Authors>tangdabin</Authors>
     <Company>tdb</Company>
     <Description>tdb webapi 框架标准库</Description>
-    <PackageReleaseNotes>webapi 框架标准库</PackageReleaseNotes>
+    <PackageReleaseNotes>1、升级组件；
+2、合并命名空间；</PackageReleaseNotes>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/dabintang/tdb.framework</PackageProjectUrl>
     <PackageTags>tdb</PackageTags>
@@ -14,21 +15,21 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Autofac" Version="6.3.0" />
-    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.2.0" />
-    <PackageReference Include="Autofac.Extras.DynamicProxy" Version="6.0.0" />
-    <PackageReference Include="AutoMapper" Version="11.0.0" />
+    <PackageReference Include="Autofac" Version="6.4.0" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="8.0.0" />
+    <PackageReference Include="Autofac.Extras.DynamicProxy" Version="6.0.1" />
+    <PackageReference Include="AutoMapper" Version="11.0.1" />
     <PackageReference Include="HttpReports" Version="2.6.3" />
     <PackageReference Include="HttpReports.Transport.Http" Version="2.6.3" />
-    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="6.0.0" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
-    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.15.0" />
-    <PackageReference Include="tdb.appsettings" Version="2.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="6.0.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.1" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.19.0" />
+    <PackageReference Include="tdb.appsettings" Version="2.1.1.1" />
     <PackageReference Include="tdb.common" Version="2.1.1" />
-    <PackageReference Include="tdb.consul.kv" Version="2.1.1" />
-    <PackageReference Include="tdb.consul.services" Version="2.1.1" />
-    <PackageReference Include="tdb.csredis" Version="2.1.1" />
-    <PackageReference Include="tdb.nlog.mysql" Version="2.1.1" />
+    <PackageReference Include="tdb.consul.kv" Version="2.1.1.1" />
+    <PackageReference Include="tdb.consul.services" Version="2.1.1.1" />
+    <PackageReference Include="tdb.csredis" Version="2.1.1.1" />
+    <PackageReference Include="tdb.nlog.mysql" Version="2.1.1.1" />
   </ItemGroup>
 
   <PropertyGroup>

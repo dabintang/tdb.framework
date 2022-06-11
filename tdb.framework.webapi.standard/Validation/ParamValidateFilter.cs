@@ -5,10 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using tdb.framework.webapi.standard.DTO;
-using tdb.framework.webapi.standard.Validation.Attributes;
 
-namespace tdb.framework.webapi.standard.Validation
+namespace tdb.framework.webapi.standard
 {
     /// <summary>
     /// 参数验证过滤器

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace tdb.framework.webapi.standard.Config
+namespace tdb.framework.webapi.standard
 {
     /// <summary>
     /// 本地配置服务

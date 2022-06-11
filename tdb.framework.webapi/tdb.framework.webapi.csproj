@@ -2,14 +2,15 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <Version>6.0.1.1</Version>
+    <Version>6.0.1.2</Version>
     <Authors>tangdabin</Authors>
     <Company>tdb</Company>
     <Description>tdb webapi 框架</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/dabintang/tdb.framework</PackageProjectUrl>
     <PackageTags>tdb</PackageTags>
-    <PackageReleaseNotes>webapi 框架</PackageReleaseNotes>
+    <PackageReleaseNotes>1、升级组件；
+2、合并命名空间；</PackageReleaseNotes>
     <ApplicationIcon />
     <OutputType>Library</OutputType>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -20,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.5" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.0.0" />
   </ItemGroup>
 

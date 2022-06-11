@@ -4,9 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using tdb.common;
 using tdb.csredis;
-using tdb.framework.webapi.standard.Exceptions;
 
-namespace tdb.framework.webapi.standard.Cache
+namespace tdb.framework.webapi.standard
 {
     /// <summary>
     /// redis缓存

@@ -5,11 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using tdb.framework.webapi.APIVersion;
-using tdb.framework.webapi.standard.APILog;
-using tdb.framework.webapi.standard.Cache;
-using tdb.framework.webapi.standard.DTO;
-using tdb.framework.webapi.standard.Log;
+using tdb.framework.webapi;
+using tdb.framework.webapi.standard;
 
 namespace TestAPI.Controllers
 {

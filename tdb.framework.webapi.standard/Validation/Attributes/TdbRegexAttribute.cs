@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace tdb.framework.webapi.standard.Validation.Attributes
+namespace tdb.framework.webapi.standard
 {
     /// <summary>
     /// 正则表达式验证

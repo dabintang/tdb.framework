@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace tdb.framework.webapi.standard.IocAutofac.CacheAOP
+namespace tdb.framework.webapi.standard
 {
     /// <summary>
     /// 清除hash类型缓存特性

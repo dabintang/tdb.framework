@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace tdb.framework.webapi.APIVersion
+namespace tdb.framework.webapi
 {
     /// <summary>
     /// api版本

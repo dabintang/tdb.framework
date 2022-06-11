@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace tdb.framework.webapi.standard.Validation.Attributes
+namespace tdb.framework.webapi.standard
 {
     /// <summary>
     /// 错误信息

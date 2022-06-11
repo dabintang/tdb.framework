@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
 
-namespace tdb.framework.webapi.standard.IocAutofac
+namespace tdb.framework.webapi.standard
 {
     /// <summary>
     /// autofac注册模块

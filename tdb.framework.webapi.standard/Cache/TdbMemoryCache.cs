@@ -7,9 +7,8 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using tdb.common;
-using tdb.framework.webapi.standard.Exceptions;
 
-namespace tdb.framework.webapi.standard.Cache
+namespace tdb.framework.webapi.standard
 {
     /// <summary>
     /// 内存缓存

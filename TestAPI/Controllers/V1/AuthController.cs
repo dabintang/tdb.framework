@@ -9,11 +9,8 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using tdb.framework.webapi.APIVersion;
-using tdb.framework.webapi.standard.APILog;
-using tdb.framework.webapi.standard.Auth;
-using tdb.framework.webapi.standard.DTO;
-using tdb.framework.webapi.standard.Log;
+using tdb.framework.webapi;
+using tdb.framework.webapi.standard;
 
 namespace TestAPI.Controllers
 {

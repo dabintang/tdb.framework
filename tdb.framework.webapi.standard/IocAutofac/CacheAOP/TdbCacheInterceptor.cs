@@ -6,10 +6,8 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using tdb.common;
-using tdb.framework.webapi.standard.Cache;
-using tdb.framework.webapi.standard.Exceptions;
 
-namespace tdb.framework.webapi.standard.IocAutofac.CacheAOP
+namespace tdb.framework.webapi.standard
 {
     /// <summary>
     /// 缓存拦截器

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace tdb.framework.webapi.standard.Auth
+namespace tdb.framework.webapi.standard
 {
     /// <summary>
     /// 因为觉得ClaimTypes里的常量太长了，这里自定义一个短些的

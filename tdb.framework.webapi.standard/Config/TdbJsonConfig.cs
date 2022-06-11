@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using tdb.appsettings;
 
-namespace tdb.framework.webapi.standard.Config
+namespace tdb.framework.webapi.standard
 {
     /// <summary>
     /// appsettings.json配置

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace tdb.framework.webapi.standard.HTTP
+namespace tdb.framework.webapi.standard
 {
     /// <summary>
     /// HttpContext扩展类

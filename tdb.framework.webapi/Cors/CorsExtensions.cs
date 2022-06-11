@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace tdb.framework.webapi.Cors
+namespace tdb.framework.webapi
 {
     /// <summary>
     /// 跨域设置

@@ -10,7 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using tdb.common;
 
-namespace tdb.framework.webapi.Swagger
+namespace tdb.framework.webapi
 {
     /// <summary>
     /// swagger扩展类
@@ -102,7 +102,7 @@ namespace tdb.framework.webapi.Swagger
         /// <param name="provider">api版本描述提供者</param>
         /// <param name="swaggerRoutePrefix">swagger路由前缀</param>
         /// <returns></returns>
-        public static IApplicationBuilder UseTdbSwaggerAndUIApiVer(this IApplicationBuilder app, IApiVersionDescriptionProvider provider, string swaggerRoutePrefix = "tdbswagger")
+        public static IApplicationBuilder UseTdbSwaggerAndUIApiVer(this IApplicationBuilder app, IApiVersionDescriptionProvider provider, string swaggerRoutePrefix = "swagger")
         {
             //添加Swagger中间件，主要用于拦截swagger.json请求，从而可以获取返回所需的接口架构信息
             app.UseSwagger();

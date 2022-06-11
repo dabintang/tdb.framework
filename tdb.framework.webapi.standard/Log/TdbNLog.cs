@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using tdb.nlog.mysql;
 
-namespace tdb.framework.webapi.standard.Log
+namespace tdb.framework.webapi.standard
 {
     /// <summary>
     /// 日志
